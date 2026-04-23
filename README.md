@@ -1,6 +1,5 @@
 # 🛡️ AI-Powered SOC Automation & MITRE Coverage Platform
-
-## 📌 Overview
+## Overview
 
 This project is an **AI-powered Security Operations Center (SOC) automation platform** designed to simulate real-world incident response workflows.
 
@@ -13,9 +12,7 @@ It enables users to:
 
 The system demonstrates **evidence-based alert coverage**, where only alerts with generated playbooks contribute to MITRE coverage.
 
----
-
-## 🎯 Project Goals
+## Project Goals
 
 - Simulate SOC workflows end-to-end:
 
@@ -25,9 +22,7 @@ Detection → Alert → Playbook → MITRE Coverage → Dashboard
 - Provide structured, actionable playbooks
 - Demonstrate MITRE ATT&CK coverage based on actual remediation capability
 
----
-
-## 🏗️ Architecture
+## Architecture
 
 ### Backend (FastAPI)
 - Alert generation from detection YAMLs
@@ -67,47 +62,6 @@ Detection → Alert → Playbook → MITRE Coverage → Dashboard
 - Playbooks
 - MITRE heatmap
 
----
-
-## 🗂️ Project Structure
-
-
-FINAL PROJECT/
-│
-├── kb/ # Knowledge base (RAG input)
-│ ├── *.md
-│
-├── src/
-│ ├── alert_generator.py
-│ └── backend/
-│ ├── alert_service.py
-│ ├── detection_loader.py
-│ └── app/
-│ ├── main.py
-│ ├── db/
-│ │ ├── models.py
-│ │ └── database.py
-│ ├── schemas/
-│ │ ├── alert.py
-│ │ └── playbook.py
-│ ├── rag/
-│ │ ├── kb_indexer.py
-│ │ ├── retriever.py
-│ │ └── kb_index.json
-│ ├── mitre/
-│ │ ├── build_mitre_index.py
-│ │ └── loader.py
-│ ├── mitre_data/
-│ │ ├── enterprise-attack.json
-│ │ └── mitre_index.json
-│ └── llm/
-│ └── ollama_client.py
-│
-└── README.md
-
-
----
-
 ## ⚙️ Setup Instructions
 
 ### 1️⃣ Clone the repository
@@ -115,42 +69,57 @@ FINAL PROJECT/
 ```bash
 git clone <your-repo-url>
 cd FINAL-PROJECT
-2️⃣ Create and activate virtual environment
+```
+### 2️⃣ Create and activate virtual environment
+```bash
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-3️⃣ Install dependencies
+```
+### 3️⃣ Install dependencies
+```bash
 pip install -r requirements.txt
-
+```
 (If requirements.txt is not present, install manually:)
-
+```bash
 pip install fastapi uvicorn sqlalchemy pydantic requests sentence-transformers numpy tqdm python-dateutil
-4️⃣ Install Ollama (LLM)
+```
+### 4️⃣ Install Ollama (LLM)
 
 Download:
 👉 https://ollama.com/download
 
 Verify:
 
+```bash
 ollama --version
+```
 
 Pull model:
 
+```bash
 ollama pull llama3.1:8b
-
+```
 Warm up model:
 
+```bash
 ollama run llama3.1:8b "Respond with OK"
-5️⃣ Build Knowledge Base Index (RAG)
+```
+### 5️⃣ Build Knowledge Base Index (RAG)
+```bash
 python src/backend/app/rag/kb_indexer.py
-6️⃣ Build MITRE Index
+```
+### 6️⃣ Build MITRE Index
+```bash
 python src/backend/app/mitre/build_mitre_index.py
-7️⃣ Run the backend
+```
+### 7️⃣ Run the backend
+```bash
 uvicorn src.backend.app.main:app --reload
-
+```
 Open:
 👉 http://127.0.0.1:8000/docs
 
-🚀 Usage
+Usage
 Generate and save alert
 POST /detections/{detection_id}/generate-and-save
 View alerts
