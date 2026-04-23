@@ -1,0 +1,17 @@
+import { createBrowserRouter } from "react-router-dom";
+import { Shell } from "../components/layout/Shell";
+import { AlertsPage } from "../pages/AlertsPage";
+import { AlertDetailPage } from "../pages/AlertDetailPage";
+import { MitreHeatmapPage } from "../pages/MitreHeatmapPage";
+
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Shell />,
+    children: [
+      { path: "/", element: <AlertsPage /> },
+      { path: "/alerts/:alertId", element: <AlertDetailPage /> },
+      { path: "/mitre", element: <MitreHeatmapPage /> },
+    ],
+  },
+]);
